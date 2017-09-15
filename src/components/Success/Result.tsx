@@ -43,7 +43,9 @@ function Result({ steps, ...state }: Props & QuizState) {
   const groupScores: GroupScore[] = map(
     groupedReactions,
     (reactions: QuizReaction[], group: string) => {
-      const groupSteps = steps[group]
+      const groupSteps = steps[group].filter(
+        step => step.title !== "Summary"
+      )
       const scores = groupSteps.map(step => {
         const reaction = state.quizReactions[step.link]
         if (reaction) {
